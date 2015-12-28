@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<component name="dataSourceStorage">
+  <data-source name="MySQL - estore@localhost" uuid="a5f8864a-be61-4149-9bb2-e3e93e88d2d5">
+    <database-info product="MySQL" version="5.6.27-0ubuntu0.15.04.1" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <extra-name-characters>#@</extra-name-characters>
+      <identifier-quote-string>`</identifier-quote-string>
+    </database-info>
+    <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact"/>
+    <schema name="" catalog="estore"/>
+    <table name="customer" schema="" catalog="estore" type="TABLE">
+      <column name="cust_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="cust_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="cust_id"/>
+      <exported-key name="custorder_ibfk_1" table="custorder" schema="" catalog="estore" columns="cust_id"/>
+    </table>
+    <table name="custorder" schema="" catalog="estore" type="TABLE">
+      <column name="cust_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <column name="prod_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4" def="MA=="/>
+      <primary-key name="PRIMARY" columns="cust_id,prod_id"/>
+      <foreign-key name="custorder_ibfk_1" columns="cust_id" ref-table="customer" ref-schema="" ref-catalog="estore" ref-columns="cust_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <foreign-key name="custorder_ibfk_2" columns="prod_id" ref-table="product" ref-schema="" ref-catalog="estore" ref-columns="prod_id" update-rule="3" delete-rule="3" deferrability="2"/>
+    </table>
+    <table name="product" schema="" catalog="estore" type="TABLE">
+      <column name="prod_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="prod_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="prod_type" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <column name="sup_id" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="price" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <column name="quantity" sqlType="INT" precision="10" scale="0" nullable="true" jdbcType="4"/>
+      <primary-key name="PRIMARY" columns="prod_id"/>
+      <foreign-key name="product_ibfk_1" columns="sup_id" ref-table="supplier" ref-schema="" ref-catalog="estore" ref-columns="sup_id" update-rule="3" delete-rule="3" deferrability="2"/>
+      <exported-key name="custorder_ibfk_2" table="custorder" schema="" catalog="estore" columns="prod_id"/>
+    </table>
+    <table name="supplier" schema="" catalog="estore" type="TABLE">
+      <column name="sup_id" sqlType="INT" precision="10" scale="0" nullable="false" jdbcType="4"/>
+      <column name="sup_name" sqlType="VARCHAR" precision="20" scale="0" nullable="true" jdbcType="12"/>
+      <primary-key name="PRIMARY" columns="sup_id"/>
+      <exported-key name="product_ibfk_1" table="product" schema="" catalog="estore" columns="sup_id"/>
+    </table>
+  </data-source>
+</component>
